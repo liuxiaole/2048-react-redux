@@ -1,0 +1,11 @@
+{
+  "extends": "react-app",
+  "ignore": [
+    ".vscode/",
+    "node_modules/",
+    "build/"
+  ],
+  "rules": {
+    "semi": ["error", "always"]
+  }
+}

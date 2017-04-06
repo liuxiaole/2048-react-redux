@@ -1,0 +1,47 @@
+.game-over{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  text-align: center;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 30% 0;
+  animation: a-game-over .3s ease;
+}
+.game-over .title{
+  font-size: 56px;
+  font-weight: bold;
+}
+.game-over button{
+  background: transparent;
+  color: #776e65;
+  border: 2px solid #776e65;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 8px 28px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.game-over button:hover,
+.game-over button:focus{
+  outline: 0;
+  color: white;
+  background: #877d73;
+}
+
+.game-over button:active{
+  color: white;
+  background: #6b635b;
+}
+@keyframes a-game-over{
+  from{
+    opacity: 0;
+    transform: scale(.6);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,121 @@
+.game-board{
+  user-select: none;
+  width: 450px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.game-box{
+  width: 450px;
+  height: 450px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #bbada0;
+  border-radius: 5px;
+  position: relative;
+}
+.grid-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+.grid-cell{
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  background: rgba(238, 228, 218, 0.35);
+}
+.tile-container{
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+}
+
+.title-box{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-between;
+}
+.title-box .title{
+  width: 46%;
+  font-size: 72px;
+  margin: 0;
+  line-height: .8em;
+}
+.desc-txt{
+  margin: 12px 0;
+  font-size: 16px;
+}
+.desc-txt .bold{
+  font-weight: bold;
+}
+.new-game-btn{
+  padding: 12px 0;
+  width: 25%;
+  border: 0;
+  background: #847363;
+  color: white;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: 0;
+}
+.new-game-btn:hover{
+  background: #9c8c7c;
+}
+.new-game-btn:active{
+  background: #807060;
+}
+.score-box{
+  width: 25%;
+  font-weight: bold;
+  color: #faf8ef;
+  text-align: center;
+  position: relative;
+  background: #bbada0;
+  padding: 5px 0;
+  border-radius: 5px;
+}
+.score-box .score-lable{
+  font-size: 14px;
+}
+.score-box .score-content{
+  font-size: 28px;
+  color: white;
+}
+.score-box .addition-score{
+  font-size: 26px;
+  color: #776e65;
+  position: absolute;
+  display: table;
+  margin: auto;
+  width: 40%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  animation: a-raise-up .6s linear both;
+}
+@keyframes a-raise-up{
+  from{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  50%{
+    opacity: 1;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -200%, 0);
+  }
+}
