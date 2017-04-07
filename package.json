@@ -1,6 +1,6 @@
 {
   "name": "2048-react",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://liuxiaole.github.io/2048-react",
   "dependencies": {
@@ -18,5 +18,10 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  }
+  },
+  "description": "2048 game in react ",
+  "main": "src/index.js",
+  "repository": "https://github.com/liuxiaole/2048-react.git",
+  "author": "chn.will.liu@gmail.com",
+  "license": "MIT"
 }
