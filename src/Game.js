@@ -31,12 +31,12 @@ export default class Game extends Component {
 
   handleKeyPress (ev) {
     let { key } = ev;
-    ev.preventDefault();
 
     if (!this.state.gameStarted) return;
     let match = key.toLowerCase().match(/arrow(up|right|down|left)/);
     if (match) {
       this.move(match[1]);
+      ev.preventDefault();
     }
   }
 
@@ -75,13 +75,13 @@ export default class Game extends Component {
         } else if(cell.mergedItem) {
           // do merge operation
           cell.number += cell.mergedItem.number;
-          cell.newMerged = true;
+          cell.newMerged = true; // set newMerged flag for animation
         }
       });
       if (emptyCells.length) {
         let index = Math.floor(Math.random() * emptyCells.length);
-        let randomCell = emptyCells[index];
-        cells[randomCell[0]][randomCell[1]] = {
+        let [row, cell] = emptyCells[index];
+        cells[row][cell] = {
           number: Math.random() > 0.8 ? 4 : 2,
           newGenerated: true,
           newMerged: false,
@@ -91,9 +91,6 @@ export default class Game extends Component {
       }
       return {cells};
     });
-
-    // sleep 150ms for animation of merged and new generated item
-    // return this.sleep(100);
   }
 
   isMovable () {
@@ -173,10 +170,10 @@ export default class Game extends Component {
         while (nextCol >= 0 && nextCol < size && nextRow >=0 && nextRow < size) {
           nextCell = cells[nextRow][nextCol];
           if (nextCell) {
-            // find a non-empty cell in the dir direction, just break
+            // found a non-empty cell in the dir direction, just break
             break;
           }
-          // next cell is empty, walk forward the direction
+          // next cell is empty, so walk forward the direction
           nextCol += dirOffset[0];
           nextRow += dirOffset[1];
         }
@@ -184,6 +181,7 @@ export default class Game extends Component {
         if (nextCell && !nextCell.mergedItem && nextCell.number === cell.number) {
           // get the same number cell, and the cell is not new merged one
           // store the merged item, in the later, we'll do merge operation
+          // this is for better animation effect reason
           cell.mergedItem = nextCell;
           cells[nextRow][nextCol] = cell;
           cells[row][col] = null;
@@ -213,7 +211,10 @@ export default class Game extends Component {
         };
         if (score) {
           // store the scores in array
-          nextState.additionScores = [...state.additionScores, {score, key: Date.now()}];
+          // this is for better animation effect, additionScores is a queue
+          // when get score, enqueue score item, when animation end (there is an '+score' rasing up)
+          // dequeue the score item, key is for react list rendering
+          nextState.additionScores = [...state.additionScores, {score, key: 'score' + Date.now()}];
         }
         return nextState;
       });
@@ -238,7 +239,6 @@ export default class Game extends Component {
         localStorage.setItem('bestScore', bestScore);
       }
       this.setState({gameStarted: false, bestScore});
-
     }
   }
 
@@ -262,8 +262,8 @@ export default class Game extends Component {
   handleAdditionScoreAnimationEnd (ev, scoreItem, index) {
     this.setState(state => {
       let additionScores = state.additionScores;
-      additionScores.splice(index, 1);
-      return {additionScores};
+      // when score item is `raised up`, dequeue score item from additionScores
+      return {additionScores: [...additionScores.slice(0, index), ...additionScores.slice(index+1)]};
     });
   }
 
