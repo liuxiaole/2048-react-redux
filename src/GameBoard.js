@@ -58,7 +58,7 @@ export default function GameBoard (props) {
         <TileContainer cells={props.cells}/>
         {props.children}
       </div>
-      <a href="https://github.com/liuxiaole/2048-react" className="view-score-link">view scoure on github</a>
+      <a href="https://github.com/liuxiaole/2048-react" className="view-score-link">view source on github</a>
     </div>
   );
 }
