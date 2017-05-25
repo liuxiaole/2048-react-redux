@@ -46,8 +46,7 @@ const tile = (state = null, action) => {
       return {
         ...state,
         number: state.number + state.tileToMerge.number,
-        newMerged: true,
-        tileToMerge: null
+        newMerged: true
       };
     case ActionTypes.PRE_MERGE_TILE:
       return {
@@ -58,7 +57,8 @@ const tile = (state = null, action) => {
     case ActionTypes.RESET_NEW_MERGED_TILE_TAG:
       return {
         ...state,
-        newMerged: false
+        newMerged: false,
+        tileToMerge: null
       };
 
     default:
